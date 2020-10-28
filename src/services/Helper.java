@@ -1,6 +1,5 @@
 package services;
 
-import freemarker.core.ParseException;
 import freemarker.template.*;
 
 import javax.servlet.http.HttpServletRequest;

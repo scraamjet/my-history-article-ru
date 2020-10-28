@@ -1,24 +1,46 @@
 package models;
 
+import java.util.Date;
 import java.util.Objects;
 
 public class Article {
     private Long id;
     private String title;
     private String text;
-    private  User owner;
+    private Long userID;
+    private double averageRate;
+    private Date date;
 
-    public Article(Long id,String title, String text,User owner) {
+    public Article(Long id, String title, String text, Long userID, double averageRate,Date date) {
         this.id = id;
         this.title = title;
         this.text = text;
-        this.owner = owner;
+        this.userID = userID;
+        this.averageRate = averageRate;
+        this.date = date;
     }
 
-    public Article(Long id,String title, String text) {
-        this.id = id;
+    public Article(String title, String text, Long userID) {
         this.title = title;
         this.text = text;
+        this.userID = userID;
+        this.averageRate = 0.0;
+    }
+
+    public Long getUserID() {
+        return userID;
+    }
+
+    public void setUserID(Long userID) {
+        this.userID = userID;
+    }
+
+    public double getAverageRate() {
+        return averageRate;
+    }
+
+    public void setAverageRate(double averageRate) {
+        this.averageRate = averageRate;
     }
 
     public Long getId() {
@@ -45,12 +67,8 @@ public class Article {
         this.text = text;
     }
 
-    public User getOwner() {
-        return owner;
-    }
-
-    public void setOwner(User owner) {
-        this.owner = owner;
+    public Date getDate() {
+        return date;
     }
 
     @Override

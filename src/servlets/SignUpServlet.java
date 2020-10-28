@@ -29,16 +29,12 @@ public class SignUpServlet extends HttpServlet
     {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
-        response.setContentType("text/html");
-        response.setCharacterEncoding("UTF-8");
         Map<String,Object> root = new HashMap<>();
         if(signUpService.checkPasswordInput(password)&&signUpService.checkLoginInput(login))
         {
             if(signUpService.isNotExist(login)) {
                 signUpService.signUp(login,password);
-                root.put("user", login);
-                root.put("message","Account has been successfully created");
-                helper.render(request, response, "profile.ftl", root);
+                response.sendRedirect("http://localhost:8081/myArticle/signIn");
         }
             else{
                 root.put("message","This login already taken!");

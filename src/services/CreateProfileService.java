@@ -9,9 +9,8 @@ import repositories.UserRepositoryJDBCImpl;
 public class CreateProfileService {
     private UserProfileRepositoryImpl userProfileRepository = new UserProfileRepositoryImpl();
     public void createProfile(User user){
-        UserProfile userProfile = new UserProfile(0,"C:\\Users\\user1\\IdeaProjects\\Sem_2course1semMyWebAPP\\src\\drawable\\userStart.png");
+        UserProfile userProfile = new UserProfile();
         userProfileRepository.save(userProfile);
         userProfileRepository.addUserProfileToUser(user,userProfile);
-        user.setUserProfile(userProfile);
     }
 }

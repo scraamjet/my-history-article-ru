@@ -3,12 +3,8 @@ package services;
 import models.User;
 import repositories.UserRepositoryJDBCImpl;
 
-import java.sql.Connection;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
-public class SignUpService implements SignUpServiceInterface {
+public class SignUpService {
     private UserRepositoryJDBCImpl userRepositoryJDBC = new UserRepositoryJDBCImpl();
     private CreateProfileService createProfileService = new CreateProfileService();
     public void signUp(String login, String password){

@@ -6,14 +6,14 @@ public class User {
     private long id;
     private String login;
     private String password;
-    private UserProfile userProfile;
+    private Long profileID;
 
-    public UserProfile getUserProfile() {
-        return userProfile;
+    public Long getProfileID() {
+        return profileID;
     }
 
-    public void setUserProfile(UserProfile userProfile) {
-        this.userProfile = userProfile;
+    public void setProfileID(Long profileID) {
+        this.profileID = profileID;
     }
 
     public long getId() {
@@ -29,10 +29,11 @@ public class User {
         this.password = password;
     }
 
-    public User(long id, String login, String password) {
+    public User(long id, String login, String password,long profileID) {
         this.id = id;
         this.login = login;
         this.password = password;
+        this.profileID = profileID;
     }
 
     public String getLogin() {

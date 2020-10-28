@@ -7,7 +7,7 @@
     <style>
         .MyHistoryArticleHeader{
             height: 45px;
-            width: 1534px;
+            width: 1533px;
             margin-top: -10px;
             color: bisque;
             margin-left: -15px;

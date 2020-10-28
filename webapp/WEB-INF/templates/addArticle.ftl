@@ -29,7 +29,7 @@
             color:indianred;
             font-size: 15px;
             border-radius: 20px;
-        }
+        ]        }
         .HeaderInput{
             margin-left: 100px;
             height: 27px;
@@ -59,12 +59,29 @@
             padding-left: 55px;
             margin-top: 10px;
         }
+
         #userIcon{
             margin-left: 10px;
         }
 
         a{
             text-decoration: none;
+        }
+        .titleArea{
+            width: 820px;
+        }
+        .textArea{
+            width: 820px;
+            height: 500px;
+        }
+        .addArticleSubmit{
+            height: 28px;
+            width: 80px;
+            background-color: indianred;
+            color:wheat;
+            font-size: 15px;
+            border-radius: 20px;
+            margin-left: 660px;
         }
     </style>
 </head>
@@ -73,17 +90,17 @@
     <p>${message}</p>
 </#if>
 <div style="display: flex">
-<div class="MyHistoryArticleHeader">
-    MyHistoryArticle.ru
-    <form class="searchForm" action="/profile">
-        <input type="search"  class="HeaderInput" placeholder="Insert the title of article">
-        <input type="submit" class="searchSubmit" value="Search">
-    </form>
-    <button name = "AdvancedSearch" class="searchSubmit" style="margin-left:15px;
+    <div class="MyHistoryArticleHeader">
+        MyHistoryArticle.ru
+        <form class="searchForm" action="/profile">
+            <input type="search"  class="HeaderInput" placeholder="Insert the title of article">
+            <input type="submit" class="searchSubmit" value="Search">
+        </form>
+        <button name = "AdvancedSearch" class="searchSubmit" style="margin-left:15px;
     margin-top:10px;width: 150px;height: 27px">
-        Advanced Search
-    </button>
-</div>
+            Advanced Search
+        </button>
+    </div>
 </div>
 <div style="display: flex">
     <div class="functionalList">
@@ -105,20 +122,18 @@
             <input type="submit" class="functionalListButton" style="padding-left: 10px" value="Exit" name="exit"/>
         </form>
     </div>
-    <img src="WEB-INF/drawable/default_user_icon.jpg" width="200px" height="250px" style="margin-left: 80px;margin-top: 10px">
-    <div style="margin-left: 70px;font-size: 30px">
+    <form method="post" style="margin-left: 150px; margin-top: 50px;display: block">
+        <input type="text" class="titleArea" name="title" placeholder="Insert the title of your article">
         <br>
         <br>
+        <textarea class="textArea" name="text" placeholder="Your article...">
+        </textarea>
         <br>
         <br>
-        <br>
-        Articles average rate:
-        <a href="http://localhost:8081/myArticle/addArticle">
-            <button type="submit" class="functionalListButton">
-                +add article
-            </button>
-        </a>
-    </div>
+        <input type="submit" class="addArticleSubmit" value="Publish" name="addArticle">
+        <input type="submit" class = "addArticleSubmit" style="margin-left: 5px;background-color: cadetblue"
+               value="Cancel" name="cancel">
+    </form>
 </div>
 </body>
 </html>

@@ -14,9 +14,9 @@ public class ArticleRepositoryImpl implements ArticleRepository{
     private Connection connection;
     private static final String SQL_FIND_ALL_BY_TITLE = "SELECT * FROM articles WHERE title = ?";
     private static final String SQL_FIND_BY_ID = "SELECT * FROM articles WHERE id = ?";
-    private static final String SQL_SAVE_ARTICLE = "INSERT INTO articles (title,text,owner_id)VALUES(?,?,?)";
-    private static final String SQL_UPDATE_ARTICLE = "UPDATE articles SET title = ?,text = ?";
-    private static final String SQL_FIND_ALL_BY_USER_ID = "SELECT*FROM articles WHERE owner_id = ?";
+    private static final String SQL_SAVE_ARTICLE = "INSERT INTO articles (title,text,owner_id,article_average_rate)VALUES(?,?,?,?)";
+    private static final String SQL_UPDATE_ARTICLE = "UPDATE articles SET title = ?,text = ?,article_average_rate = ?";
+    private static final String SQL_FIND_ALL_BY_USER_ID = "SELECT * FROM articles WHERE owner_id = ?";
     private static final String SQL_DELETE_BY_ID = "DELETE FROM articles WHERE id = ?";
 
     public ArticleRepositoryImpl() {
@@ -76,14 +76,15 @@ public class ArticleRepositoryImpl implements ArticleRepository{
         try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SAVE_ARTICLE, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1,article.getTitle());
             preparedStatement.setString(2,article.getText());
-            preparedStatement.setLong(3,article.getId());
+            preparedStatement.setLong(3,article.getUserID());
+            preparedStatement.setDouble(4,article.getAverageRate());
             int updRows = preparedStatement.executeUpdate();
             if (updRows == 0) {
                 throw new SQLException();
             }
             try (ResultSet set = preparedStatement.getGeneratedKeys()) {
                 if (set.next()) {
-                    article.setId(set.getLong(3));
+                    article.setId(set.getLong(1));
                 } else {
                     throw new SQLException();
                 }
@@ -98,8 +99,8 @@ public class ArticleRepositoryImpl implements ArticleRepository{
         try (PreparedStatement statement = connection.prepareStatement(SQL_UPDATE_ARTICLE)) {
             statement.setString(1,article.getTitle());
             statement.setString(2,article.getText());
+            statement.setDouble(3,article.getAverageRate());
             int updRows = statement.executeUpdate();
-
             if (updRows == 0) {
                 throw new SQLException();
             }
@@ -120,13 +121,14 @@ public class ArticleRepositoryImpl implements ArticleRepository{
         } catch (SQLException e) {
             throw new IllegalStateException(e);
         }
-
     }
     private RowMapper<Article> articleRowMapper = row -> {
-        //Получаем id из соответствующей колонки
         Long id = row.getLong("id");
         String title = row.getString("title");
         String text = row.getString("text");
-        return new Article(id,title,text);
+        Long userID = row.getLong("owner_id");
+        Double averageRATE = row.getDouble("article_average_id");
+        Date date = row.getDate("date");
+        return new Article(id,title,text,userID,averageRATE,date);
     };
 }
