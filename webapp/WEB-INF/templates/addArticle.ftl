@@ -1,4 +1,4 @@
-<#ftl encoding="utf-8">
+<#ftl encoding="Windows-1251">
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -81,7 +81,7 @@
             color:wheat;
             font-size: 15px;
             border-radius: 20px;
-            margin-left: 660px;
+            margin-left: 680px;
         }
     </style>
 </head>
@@ -131,8 +131,6 @@
         <br>
         <br>
         <input type="submit" class="addArticleSubmit" value="Publish" name="addArticle">
-        <input type="submit" class = "addArticleSubmit" style="margin-left: 5px;background-color: cadetblue"
-               value="Cancel" name="cancel">
     </form>
 </div>
 </body>

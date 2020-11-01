@@ -1,4 +1,4 @@
-<#ftl encoding="utf-8">
+<#ftl encoding="Windows-1251">
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -108,11 +108,13 @@
     <img src="WEB-INF/drawable/default_user_icon.jpg" width="200px" height="250px" style="margin-left: 80px;margin-top: 10px">
     <div style="margin-left: 70px;font-size: 30px">
         <br>
+        ${login}
         <br>
         <br>
+        Number of published article: ${articlesCount}
         <br>
         <br>
-        Articles average rate:
+        Articles average rate: ${articleRATE}
         <a href="http://localhost:8081/myArticle/addArticle">
             <button type="submit" class="functionalListButton">
                 +add article

@@ -45,17 +45,17 @@ public class ProfileServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        /*String login = (String) request.getSession(false).getAttribute("login");
+        String login = (String) request.getSession(false).getAttribute("login");
         User user = userProfileService.findUser(login);
         UserProfile userProfile = userProfileService.findProfile(login);
-        Double averageRATE = userProfile.getArticleAverageRATE();
-        String imagePATH = userProfile.getImagePath();
-        HashMap<String,Object> root = new HashMap<>();
-        root.put("RATE",averageRATE);
-        root.put("image",imagePATH);
+        double articleRATE = userProfile.getArticleAverageRATE();
+        String icon = userProfile.getImagePath();
+        int articlesCount = userProfileService.usersArticlesCount(user.getId());
+        HashMap<String, Object> root = new HashMap<String,Object>();
         root.put("login",login);
-         */
-
-        helper.render(request,response,"profile.ftl",new HashMap<>());
+        root.put("articleRATE",articleRATE);
+        root.put("icon",icon);
+        root.put("articlesCount",articlesCount);
+        helper.render(request,response,"profile.ftl",root);
     }
 }

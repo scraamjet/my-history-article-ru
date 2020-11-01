@@ -32,12 +32,13 @@ public class UserProfile {
     public String getImagePath() {
         return imagePath;
     }
-
-
+   /*
     public byte[] startImagePath() throws IOException {
         File file = new File(getImagePath());
         return Files.readAllBytes(file.toPath());
     }
+
+    */
 
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;

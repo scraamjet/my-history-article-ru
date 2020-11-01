@@ -81,12 +81,7 @@
             color:wheat;
             font-size: 15px;
             border-radius: 20px;
-            margin-left: 660px;
-        }
-        .articleStyle{
-            background-color: indianred;
-            font-size: 19px;
-            color: wheat;
+            margin-left: 680px;
         }
     </style>
 </head>
@@ -127,7 +122,11 @@
             <input type="submit" class="functionalListButton" style="padding-left: 10px" value="Exit" name="exit"/>
         </form>
     </div>
-
+    <#list myArticles as article>
+    <p>${article}
+        <#else>
+    <p>No users
+        </#list>
 </div>
 </body>
 </html>

@@ -31,11 +31,35 @@ public class AddArticleServlet extends HttpServlet {
         String title = request.getParameter("title");
         String text = request.getParameter("text");
         String exit = request.getParameter("exit");
-        String cancel = request.getParameter("cancel");
-
+        HashMap<String,Object> root = new HashMap<>();
         Article article = new Article(title, text, user.getId());
-        addArticleService.addArticle(article);
-
+        if(addArticleService.checkRegexTitleInput(article)) {
+            if(addArticleService.checkRegexTextInput(article)) {
+                if(addArticleService.checkTitleSeqLength(article)) {
+                    if (addArticleService.checkTextSeqLength(article)) {
+                        addArticleService.addArticle(article);
+                        root.put("message","Your article was successfully published!");
+                        helper.render(request,response,"addArticle.ftl",root);
+                    }
+                    else {
+                        root.put("message","The text cannot be so shot. Minimal length: 30 characters!");
+                        helper.render(request,response,"addArticle.ftl",root);
+                    }
+                }
+                else {
+                    root.put("message","The title cannot be so short. Minimal length: 4 characters!");
+                    helper.render(request,response,"addArticle.ftl",root);
+                }
+            }
+            else {
+                root.put("message","The text cannot contain characters: @.+,=,^,{,}");
+                helper.render(request,response,"addArticle.ftl",root);
+            }
+        }
+        else{
+            root.put("message","The title cannot contain characters: %,@.+,=,^,{,}");
+            helper.render(request,response,"addArticle.ftl",root);
+        }
         if(exit.equals("Exit")){
             if(request.getSession(false)!=null){
                 if(request.getSession(false).getAttribute("login") !=null){
@@ -46,7 +70,7 @@ public class AddArticleServlet extends HttpServlet {
             Cookie cookie = new Cookie("login","null");
             cookie.setMaxAge(0);
             response.addCookie(cookie);
-            response.sendRedirect("http://localhost:8081/myArticle/signIn");
+            response.sendRedirect("/signIn");
         }
     }
 

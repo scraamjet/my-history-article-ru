@@ -1,4 +1,4 @@
-<#ftl encoding="utf-8">
+<#ftl encoding="Windows-1251">
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>

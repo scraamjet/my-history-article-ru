@@ -1,10 +1,8 @@
 package repositories;
 
 import models.Article;
-import models.User;
 import singletons.ConnectionProvider;
 
-import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,11 +16,26 @@ public class ArticleRepositoryImpl implements ArticleRepository{
     private static final String SQL_UPDATE_ARTICLE = "UPDATE articles SET title = ?,text = ?,article_average_rate = ?";
     private static final String SQL_FIND_ALL_BY_USER_ID = "SELECT * FROM articles WHERE owner_id = ?";
     private static final String SQL_DELETE_BY_ID = "DELETE FROM articles WHERE id = ?";
+    //private static final String SQL_COUNT_USERS_ARTICLES = "SELECT COUNT(*) as count FROM articles WHERE owner_id = ?";
 
     public ArticleRepositoryImpl() {
         this.connection = ConnectionProvider.getConnection();
     }
 
+    public int countUsersArticles(Long userID){
+        int result = 0;
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_FIND_ALL_BY_USER_ID)) {
+            preparedStatement.setLong(1,userID);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    result++;
+                }
+            }
+        } catch (SQLException e) {
+            throw new IllegalStateException(e);
+        }
+        return result;
+    }
     @Override
     public List<Article> findAllByTitle(String title) {
         List<Article> articles = new ArrayList<>();

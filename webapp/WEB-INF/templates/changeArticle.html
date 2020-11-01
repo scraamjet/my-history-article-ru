@@ -81,18 +81,13 @@
             color:wheat;
             font-size: 15px;
             border-radius: 20px;
-            margin-left: 660px;
-        }
-        .articleStyle{
-            background-color: indianred;
-            font-size: 19px;
-            color: wheat;
+            margin-left: 680px;
         }
     </style>
 </head>
 <body bgcolor="#ffe4c4">
 <#if message?has_content>
-    <p>${message}</p>
+<p>${message}</p>
 </#if>
 <div style="display: flex">
     <div class="MyHistoryArticleHeader">
@@ -127,7 +122,16 @@
             <input type="submit" class="functionalListButton" style="padding-left: 10px" value="Exit" name="exit"/>
         </form>
     </div>
-
+    <form method="post" style="margin-left: 150px; margin-top: 50px;display: block">
+        <input type="text" class="titleArea" name="title" placeholder="Insert the title of your article">
+        <br>
+        <br>
+        <textarea class="textArea" name="text" placeholder="Your article...">
+        </textarea>
+        <br>
+        <br>
+        <input type="submit" class="addArticleSubmit" value="Publish" name="addArticle">
+    </form>
 </div>
 </body>
 </html>
