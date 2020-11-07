@@ -31,19 +31,22 @@ public class SignUpServlet extends HttpServlet
         String password = request.getParameter("password");
         Map<String,Object> root = new HashMap<>();
         if(signUpService.checkPasswordInput(password)&&signUpService.checkLoginInput(login))
-        {
-            if(signUpService.isNotExist(login)) {
-                signUpService.signUp(login,password);
+        {   if(signUpService.checkForbiddenSeq(login)) {
+            if (signUpService.isNotExist(login)) {
+                signUpService.signUp(login, password);
                 response.sendRedirect("http://localhost:8081/myArticle/signIn");
-        }
-            else{
-                root.put("message","This login already taken!");
-                helper.render(request,response,"signUp.ftl",root);
+            } else {
+                root.put("message", "This login already taken!");
+                helper.render(request, response, "signUp.ftl", root);
             }
+        }
+        else{
+            root.put("message","You use forbidden characters in login: @,$,#,%,+,=,^{,},_");
+        }
         }
         else
             {
-                root.put("message","Login or password is empty!");
+                root.put("message","Login or password is so short! Minimal length of login: 3 characters, password: 7 characters");
                 helper.render(request,response,"signUp.ftl",root);
             }
     }

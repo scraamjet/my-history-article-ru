@@ -38,7 +38,8 @@ public class SignInServlet extends HttpServlet {
             }
         }
         else {
-            root.put("message","login or password input is empty!");
+            root.put("message","Login or password is so short! Minimal length of login: 3 characters, password: 7 characters");
+            helper.render(request,response,"signIn.ftl",root);
         }
     }
 

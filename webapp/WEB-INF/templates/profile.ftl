@@ -75,9 +75,9 @@
 <div style="display: flex">
 <div class="MyHistoryArticleHeader">
     MyHistoryArticle.ru
-    <form class="searchForm" action="/profile">
-        <input type="search"  class="HeaderInput" placeholder="Insert the title of article">
-        <input type="submit" class="searchSubmit" value="Search">
+    <form method="post" class="searchForm">
+        <input type="search"  name="search" class="HeaderInput" placeholder="Insert the title of article">
+        <input type="submit" name="searchSubmit" class="searchSubmit" value="Search">
     </form>
     <button name = "AdvancedSearch" class="searchSubmit" style="margin-left:15px;
     margin-top:10px;width: 150px;height: 27px">
@@ -92,13 +92,15 @@
                 My profile
             </button>
         </a>
+        <a href="http://localhost:8081/myArticle/myArticles">
         <button class="functionalListButton" name="myArticles">
             My articles
         </button>
+        </a>
         <button class="functionalListButton" name="news" style="padding-left:75px ">
             News
         </button>
-        <button class="functionalListButton" name="news" style="padding-left: 67px">
+        <button class="functionalListButton" name="options" style="padding-left: 67px">
             Options
         </button>
         <form method="post">

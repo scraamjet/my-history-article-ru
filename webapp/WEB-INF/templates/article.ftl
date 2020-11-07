@@ -84,9 +84,16 @@
             margin-left: 660px;
         }
         .articleStyle{
+            display: block;
+            padding: 5px;
+            margin-left: 70px;
+            margin-top: 50px;
             background-color: indianred;
             font-size: 19px;
             color: wheat;
+        }
+        .articleText{
+            alignment: center;
         }
     </style>
 </head>
@@ -97,14 +104,6 @@
 <div style="display: flex">
     <div class="MyHistoryArticleHeader">
         MyHistoryArticle.ru
-        <form class="searchForm" action="/profile">
-            <input type="search"  class="HeaderInput" placeholder="Insert the title of article">
-            <input type="submit" class="searchSubmit" value="Search">
-        </form>
-        <button name = "AdvancedSearch" class="searchSubmit" style="margin-left:15px;
-    margin-top:10px;width: 150px;height: 27px">
-            Advanced Search
-        </button>
     </div>
 </div>
 <div style="display: flex">
@@ -127,7 +126,16 @@
             <input type="submit" class="functionalListButton" style="padding-left: 10px" value="Exit" name="exit"/>
         </form>
     </div>
-
+    <div class="articleStyle">
+        Author:${user.getLogin()}
+        <br>
+        Title:${article.getTitle()}
+        <br>
+        <br>
+        <div class="articleText">
+            ${article.getText()}
+        </div>
+    </div>
 </div>
 </body>
 </html>

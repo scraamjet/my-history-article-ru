@@ -19,6 +19,7 @@ public class UserProfileService {
     public User findUser(String login){
         return userRepositoryJDBC.findByLogin(login).get(0);
     }
+    public User findUser(Long id){ return userRepositoryJDBC.findById(id).get();}
     public int usersArticlesCount(Long userID){
         return articleRepository.countUsersArticles(userID);
     }

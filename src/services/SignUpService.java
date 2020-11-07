@@ -3,6 +3,8 @@ package services;
 import models.User;
 import repositories.UserRepositoryJDBCImpl;
 
+import java.util.regex.Pattern;
+
 
 public class SignUpService {
     private UserRepositoryJDBCImpl userRepositoryJDBC = new UserRepositoryJDBCImpl();
@@ -13,12 +15,16 @@ public class SignUpService {
         createProfileService.createProfile(user);
     }
     public boolean checkLoginInput(String login) {
-        return login.length() != 0;
+        return login.length() >=3;
     }
     public boolean checkPasswordInput(String password){
-        return password.length()!=0;
+        return password.length()>=7;
     }
     public boolean isNotExist(String login){
         return userRepositoryJDBC.findByLogin(login).size()==0;
+    }
+    public boolean checkForbiddenSeq(String login){
+        String regexTitleInput = "[^@%$+=^#{}_]";
+        return Pattern.matches(login,regexTitleInput);
     }
 }

@@ -11,13 +11,12 @@ public class AddArticleService {
         articleRepository.save(article);
     }
     public boolean checkRegexTitleInput(Article article){
-        String regexTitleInput = "[@%+=^{}]";
-        boolean a = !Pattern.matches(regexTitleInput,article.getTitle());
-        return a;
+        String regexTitleInput = "[^@$#%+=^{}_]";
+        return Pattern.matches(regexTitleInput,article.getTitle());
     }
     public boolean checkRegexTextInput(Article article){
-        String regexTextInput = "[@+=^{}]";
-        return !Pattern.matches(regexTextInput,article.getText());
+        String regexTextInput = "[^@#+=^{}_]";
+        return Pattern.matches(regexTextInput,article.getText());
     }
     public boolean checkTitleSeqLength(Article article){
         return article.getTitle().length()>=4;

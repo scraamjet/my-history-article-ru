@@ -83,6 +83,18 @@
             border-radius: 20px;
             margin-left: 680px;
         }
+        .miniArticleStyle{
+            padding-top: 5px;
+            padding-left: 5px;
+            display: block;
+            height: 100px;
+            width: 600px;
+            background-color: indianred;
+            color: wheat;
+            font-size: 20px;
+            margin-left: 150px;
+            margin-top: 50px;
+        }
     </style>
 </head>
 <body bgcolor="#ffe4c4">
@@ -92,14 +104,6 @@
 <div style="display: flex">
     <div class="MyHistoryArticleHeader">
         MyHistoryArticle.ru
-        <form class="searchForm" action="/profile">
-            <input type="search"  class="HeaderInput" placeholder="Insert the title of article">
-            <input type="submit" class="searchSubmit" value="Search">
-        </form>
-        <button name = "AdvancedSearch" class="searchSubmit" style="margin-left:15px;
-    margin-top:10px;width: 150px;height: 27px">
-            Advanced Search
-        </button>
     </div>
 </div>
 <div style="display: flex">
@@ -122,11 +126,23 @@
             <input type="submit" class="functionalListButton" style="padding-left: 10px" value="Exit" name="exit"/>
         </form>
     </div>
-    <#list myArticles as article>
-    <p>${article}
-        <#else>
-    <p>No users
+    <div style="display: block">
+        <#list articles as article>
+            <div class="miniArticleStyle" >
+                Author: ${login}
+                <br>
+                <a href="http://localhost:8081/myArticle/article?id=${article.getId()}">
+                Title: "${article.getTitle()}"
+                </a>
+                <br>
+                Article average rate: ${article.getAverageRate()}
+                <br>
+                <div style="padding-left: 400px">
+                Date: ${article.getDate()}
+                </div>
+             </div>
         </#list>
+    </div>
 </div>
 </body>
 </html>

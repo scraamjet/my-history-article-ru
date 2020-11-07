@@ -140,7 +140,7 @@ public class ArticleRepositoryImpl implements ArticleRepository{
         String title = row.getString("title");
         String text = row.getString("text");
         Long userID = row.getLong("owner_id");
-        Double averageRATE = row.getDouble("article_average_id");
+        Double averageRATE = row.getDouble("article_average_rate");
         Date date = row.getDate("date");
         return new Article(id,title,text,userID,averageRATE,date);
     };
