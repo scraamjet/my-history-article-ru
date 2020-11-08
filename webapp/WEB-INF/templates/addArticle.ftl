@@ -104,9 +104,11 @@
         <button class="functionalListButton" name="myArticles">
             My articles
         </button>
+        <a href="http://localhost:8081/myArticle/news">
         <button class="functionalListButton" name="news" style="padding-left:75px ">
             News
         </button>
+        </a>
         <button class="functionalListButton" name="news" style="padding-left: 67px">
             Options
         </button>

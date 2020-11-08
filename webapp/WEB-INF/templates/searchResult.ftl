@@ -115,9 +115,11 @@
         <button class="functionalListButton" name="myArticles">
             My articles
         </button>
+        <a href="http://localhost:8081/myArticle/news">
         <button class="functionalListButton" name="news" style="padding-left:75px ">
             News
         </button>
+        </a>
         <button class="functionalListButton" name="news" style="padding-left: 67px">
             Options
         </button>
@@ -128,7 +130,7 @@
     <div style="display: block">
         <#list articles as article>
             <div class="miniArticleStyle" >
-                Author: ${login}
+                Author: ${article.getUserLogin()}
                 <br>
                 <a href="http://localhost:8081/myArticle/article?id=${article.getId()}">
                     Title: "${article.getTitle()}"
@@ -139,6 +141,10 @@
                 <div style="padding-left: 400px">
                     Date: ${article.getDate()}
                 </div>
+            </div>
+            <#else>
+            <div style="margin-left: 200px;font-size: 30px">
+                Not found
             </div>
         </#list>
     </div>

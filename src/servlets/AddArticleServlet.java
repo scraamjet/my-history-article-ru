@@ -33,8 +33,7 @@ public class AddArticleServlet extends HttpServlet {
         String exit = request.getParameter("exit");
         HashMap<String,Object> root = new HashMap<>();
         Article article = new Article(title, text, user.getId());
-        if(addArticleService.checkRegexTitleInput(article)) {
-            if(addArticleService.checkRegexTextInput(article)) {
+
                 if(addArticleService.checkTitleSeqLength(article)) {
                     if (addArticleService.checkTextSeqLength(article)) {
                         addArticleService.addArticle(article);
@@ -50,16 +49,6 @@ public class AddArticleServlet extends HttpServlet {
                     root.put("message","The title cannot be so short. Minimal length: 4 characters!");
                     helper.render(request,response,"addArticle.ftl",root);
                 }
-            }
-            else {
-                root.put("message","The text cannot contain characters: @.+,=,^,{,}");
-                helper.render(request,response,"addArticle.ftl",root);
-            }
-        }
-        else{
-            root.put("message","The title cannot contain characters: %,@.+,=,^,{,}");
-            helper.render(request,response,"addArticle.ftl",root);
-        }
         if(exit.equals("Exit")){
             if(request.getSession(false)!=null){
                 if(request.getSession(false).getAttribute("login") !=null){

@@ -1,6 +1,6 @@
 <#ftl encoding="Windows-1251">
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en">
 <head>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -23,13 +23,14 @@
         }
 
         .searchSubmit{
-            height: 26px;
-            width: 80px;
+            height: 35px;
+            width: 150px;
             background-color: wheat;
             color:indianred;
-            font-size: 15px;
+            font-size: 20px;
             border-radius: 20px;
-        ]        }
+            margin-left:130px ;
+        }
         .HeaderInput{
             margin-left: 100px;
             height: 27px;
@@ -38,9 +39,6 @@
             background-color: wheat;
             color: red;
             padding-left: 7px;
-        }
-        .searchForm{
-            margin-top: -7px;
         }
         .functionalList{
             display: block;
@@ -84,8 +82,7 @@
             margin-left: 680px;
         }
         .miniArticleStyle{
-            padding-top: 5px;
-            padding-left: 5px;
+            padding: 5px;
             display: block;
             height: 100px;
             width: 600px;
@@ -95,12 +92,13 @@
             margin-left: 150px;
             margin-top: 50px;
         }
-        .changeButtonStyle{
-            width: 30px;
-            height: 80px;
-            background:cadetblue;
+        .titleSearchForm{
+            background-color: indianred;
             color: wheat;
-            border-radius: 10px;
+            margin-left: 350px;
+            margin-top: 100px;
+            height: 200px;
+            width: 400px;
         }
     </style>
 </head>
@@ -135,32 +133,14 @@
             <input type="submit" class="functionalListButton" style="padding-left: 10px" value="Exit" name="exit"/>
         </form>
     </div>
-    <div style="display: block">
-        <#list articles as article>
-            <div class="miniArticleStyle" >
-                Author: ${login}
-                <br>
-                <a href="http://localhost:8081/myArticle/article?id=${article.getId()}">
-                Title: "${article.getTitle()}"
-                </a>
-                <br>
-                Article average rate: ${article.getAverageRate()}
-                <br>
-                <a href="http://localhost:8081/myArticle/changeArticle">
-                <button name = "changeButton" class="changeButtonStyle">
-                    Change
-                </button>
-                </a>
-                <div style="padding-left: 300px">
-                Date: ${article.getDate()}
-                </div>
-             </div>
-        <#else>
-            <div style="margin-left: 200px;font-size: 30px">
-                Not found
-            </div>
-        </#list>
-    </div>
+    <form method="post" class="titleSearchForm">
+        <input  name = "title" style="background: wheat; height:20px;font-size: 20px; width: 360px; margin: 20px; color: indianred; border-radius: 10px"
+                placeholder="Insert the title of the article">
+        <br>
+        <br>
+        <br>
+        <input type="submit" class="searchSubmit" name= "search" value="Search">
+    </form>
 </div>
 </body>
 </html>

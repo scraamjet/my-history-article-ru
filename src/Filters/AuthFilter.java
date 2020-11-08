@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.HashMap;
 
-@WebFilter(urlPatterns = {"/profile","/addArticle","/myArticles","/article","/search","/advancedSearch"},filterName = "auth")
+@WebFilter(urlPatterns = {"/profile","/addArticle","/myArticles","/article","/advancedSearch"},filterName = "auth")
 public class AuthFilter implements Filter {
 
     private Helper helper;

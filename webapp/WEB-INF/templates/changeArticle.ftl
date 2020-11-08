@@ -104,9 +104,11 @@
         <button class="functionalListButton" name="myArticles">
             My articles
         </button>
+        <a href="http://localhost:8081/myArticle/news">
         <button class="functionalListButton" name="news" style="padding-left:75px ">
             News
         </button>
+        </a>
         <button class="functionalListButton" name="news" style="padding-left: 67px">
             Options
         </button>
@@ -119,10 +121,11 @@
         <br>
         <br>
         <textarea class="textArea" name="text" placeholder="Your article...">
+
         </textarea>
         <br>
         <br>
-        <input type="submit" class="addArticleSubmit" value="Publish" name="addArticle">
+        <input type="submit" class="addArticleSubmit" value="Change" name="addArticle">
     </form>
 </div>
 </body>

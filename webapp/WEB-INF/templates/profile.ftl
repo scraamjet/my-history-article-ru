@@ -23,12 +23,14 @@
         }
 
         .searchSubmit{
-            height: 26px;
-            width: 80px;
             background-color: wheat;
             color:indianred;
             font-size: 15px;
             border-radius: 20px;
+            margin-top:10px;
+            margin-left: 870px;
+            width: 150px;
+            height: 27px
         }
         .HeaderInput{
             margin-left: 100px;
@@ -75,14 +77,11 @@
 <div style="display: flex">
 <div class="MyHistoryArticleHeader">
     MyHistoryArticle.ru
-    <form method="post" class="searchForm">
-        <input type="search"  name="search" class="HeaderInput" placeholder="Insert the title of article">
-        <input type="submit" name="searchSubmit" class="searchSubmit" value="Search">
-    </form>
-    <button name = "AdvancedSearch" class="searchSubmit" style="margin-left:15px;
-    margin-top:10px;width: 150px;height: 27px">
-        Advanced Search
+    <a href="http://localhost:8081/myArticle/advancedSearch">
+    <button name = "Search" class="searchSubmit">
+        Search
     </button>
+    </a>
 </div>
 </div>
 <div style="display: flex">
@@ -96,10 +95,12 @@
         <button class="functionalListButton" name="myArticles">
             My articles
         </button>
-        </a>
+            </a>
+        <a href="http://localhost:8081/myArticle/news">
         <button class="functionalListButton" name="news" style="padding-left:75px ">
             News
         </button>
+        </a>
         <button class="functionalListButton" name="options" style="padding-left: 67px">
             Options
         </button>

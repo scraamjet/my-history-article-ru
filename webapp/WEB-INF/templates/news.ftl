@@ -1,6 +1,6 @@
 <#ftl encoding="Windows-1251">
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en">
 <head>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -84,8 +84,7 @@
             margin-left: 680px;
         }
         .miniArticleStyle{
-            padding-top: 5px;
-            padding-left: 5px;
+            padding: 5px;
             display: block;
             height: 100px;
             width: 600px;
@@ -94,13 +93,6 @@
             font-size: 20px;
             margin-left: 150px;
             margin-top: 50px;
-        }
-        .changeButtonStyle{
-            width: 30px;
-            height: 80px;
-            background:cadetblue;
-            color: wheat;
-            border-radius: 10px;
         }
     </style>
 </head>
@@ -120,14 +112,15 @@
                 My profile
             </button>
         </a>
+        <a href="http://localhost:8081/myArticle/myArticles">
         <button class="functionalListButton" name="myArticles">
             My articles
         </button>
+        </a>
         <a href="http://localhost:8081/myArticle/news">
         <button class="functionalListButton" name="news" style="padding-left:75px ">
             News
         </button>
-        </a>
         <button class="functionalListButton" name="news" style="padding-left: 67px">
             Options
         </button>
@@ -138,29 +131,25 @@
     <div style="display: block">
         <#list articles as article>
             <div class="miniArticleStyle" >
-                Author: ${login}
+                Author: ${article.getUserLogin()}
                 <br>
                 <a href="http://localhost:8081/myArticle/article?id=${article.getId()}">
-                Title: "${article.getTitle()}"
+                    Title: "${article.getTitle()}"
                 </a>
                 <br>
                 Article average rate: ${article.getAverageRate()}
                 <br>
-                <a href="http://localhost:8081/myArticle/changeArticle">
-                <button name = "changeButton" class="changeButtonStyle">
-                    Change
-                </button>
-                </a>
-                <div style="padding-left: 300px">
-                Date: ${article.getDate()}
+                <div style="padding-left: 400px">
+                    Date: ${article.getDate()}
                 </div>
-             </div>
+            </div>
         <#else>
             <div style="margin-left: 200px;font-size: 30px">
                 Not found
             </div>
         </#list>
     </div>
+
 </div>
 </body>
 </html>

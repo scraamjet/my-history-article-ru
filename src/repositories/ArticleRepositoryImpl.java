@@ -5,6 +5,7 @@ import singletons.ConnectionProvider;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,6 +17,7 @@ public class ArticleRepositoryImpl implements ArticleRepository{
     private static final String SQL_UPDATE_ARTICLE = "UPDATE articles SET title = ?,text = ?,article_average_rate = ?";
     private static final String SQL_FIND_ALL_BY_USER_ID = "SELECT * FROM articles WHERE owner_id = ?";
     private static final String SQL_DELETE_BY_ID = "DELETE FROM articles WHERE id = ?";
+    private static final String SQL_NEWS = "SELECT * FROM articles WHERE date = CURRENT_DATE;";
     //private static final String SQL_COUNT_USERS_ARTICLES = "SELECT COUNT(*) as count FROM articles WHERE owner_id = ?";
 
     public ArticleRepositoryImpl() {
@@ -57,6 +59,21 @@ public class ArticleRepositoryImpl implements ArticleRepository{
         List<Article> articles = new ArrayList<>();
         try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_FIND_ALL_BY_USER_ID)) {
             preparedStatement.setLong(1,userID);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    articles.add(articleRowMapper.mapRow(resultSet));
+                }
+            }
+        } catch (SQLException e) {
+            throw new IllegalStateException(e);
+        }
+        return articles;
+    }
+
+    @Override
+    public List<Article> findNews() {
+        List<Article> articles = new ArrayList<>();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_NEWS)) {
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
                     articles.add(articleRowMapper.mapRow(resultSet));

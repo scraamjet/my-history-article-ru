@@ -24,7 +24,7 @@ public class SignUpService {
         return userRepositoryJDBC.findByLogin(login).size()==0;
     }
     public boolean checkForbiddenSeq(String login){
-        String regexTitleInput = "[^@%$+=^#{}_]";
+        String regexTitleInput = "[a-zA-ZА-Яа-я0-9]";
         return Pattern.matches(login,regexTitleInput);
     }
 }

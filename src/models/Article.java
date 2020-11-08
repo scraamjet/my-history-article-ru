@@ -10,8 +10,21 @@ public class Article {
     private Long userID;
     private double averageRate;
     private Date date;
+    private String userLogin;
 
-    public Article(Long id, String title, String text, Long userID, double averageRate,Date date) {
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getUserLogin() {
+        return userLogin;
+    }
+
+    public void setUserLogin(String userLogin) {
+        this.userLogin = userLogin;
+    }
+
+    public Article(Long id, String title, String text, Long userID, double averageRate, Date date) {
         this.id = id;
         this.title = title;
         this.text = text;

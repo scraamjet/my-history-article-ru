@@ -16,4 +16,7 @@ public class ArticleService {
     public ArrayList<Article> findSomeArticles(String title){
         return (ArrayList<Article>) articleRepository.findAllByTitle(title);
     }
+    public void updateArticle(Article article){
+        articleRepository.update(article);
+    }
 }

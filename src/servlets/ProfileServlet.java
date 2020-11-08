@@ -31,14 +31,6 @@ public class ProfileServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String exit = request.getParameter("exit");
-        String search = request.getParameter("search");
-        HashMap<String,Object> root = new HashMap<>();
-        if(searchService.checkSearchTitleInput(search)){
-            response.sendRedirect("http://localhost:8081/myArticle/search?title=search");
-        }else {
-            root.put("message","You use forbidden characters: @,$,#,%,+,=,^{,},_");
-            helper.render(request,response,"profile.ftl",root);
-        }
         if (exit.equals("Exit")) {
             if (request.getSession(false) != null) {
                 if (request.getSession(false).getAttribute("login") != null) {

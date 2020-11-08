@@ -1,8 +1,9 @@
 package servlets;
 
+import models.Article;
 import services.ArticleService;
 import services.Helper;
-import services.SearchService;
+import services.NewsService;
 import services.UserProfileService;
 
 import javax.servlet.ServletException;
@@ -11,30 +12,32 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
-@WebServlet("/advancedSearch")
-public class AdvancedSearchServlet extends HttpServlet {
-    ArticleService articleService;
-    UserProfileService userProfileService;
+@WebServlet("/news")
+public class NewsServlet extends HttpServlet {
     Helper helper;
-    SearchService searchService;
+    NewsService newsService;
+    UserProfileService userProfileService;
     @Override
     public void init() throws ServletException {
-        articleService = new ArticleService();
-        userProfileService = new UserProfileService();
         helper = new Helper();
-        searchService = new SearchService();
+        newsService = new NewsService();
+        userProfileService = new UserProfileService();
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String title = request.getParameter("title");
-        HashMap<String,Object> root = new HashMap<>();
-        response.sendRedirect("http://localhost:8081/myArticle/searchResult?title="+title+"&");
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        ArrayList<Article>articles = newsService.showNews();
         HashMap<String,Object> root = new HashMap<>();
-        helper.render(request,response,"advancedSearch.ftl",root);
+        for(Article a:articles){
+            a.setUserLogin(userProfileService.findUser(a.getUserID()).getLogin());
+        }
+        root.put("articles",articles);
+        helper.render(request,response,"news.ftl",root);
     }
 }
