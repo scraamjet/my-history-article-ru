@@ -12,7 +12,7 @@
             height: 45px;
             width: 1533px;
             margin-top: -10px;
-            color: bisque;
+            color: wheat;
             margin-right: -15px;
             margin-left: -15px;
             padding-left: 10px;

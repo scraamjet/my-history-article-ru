@@ -121,7 +121,6 @@
         <br>
         <br>
         <textarea class="textArea" name="text" placeholder="Your article...">
-
         </textarea>
         <br>
         <br>
