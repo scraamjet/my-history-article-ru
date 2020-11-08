@@ -32,6 +32,16 @@
             width: 370px;
             border-radius: 10px;
         }
+        .message{
+            background-color: wheat;
+            color:indianred;
+            font-size: 18px;
+            height: 35px;
+            width: 1533px;
+            margin-top: -10px;
+            margin-left: -15px;
+            padding-left: 10px;
+        }
         .confirmSubmit{
             height: 50px;
             width: 370px;
@@ -46,14 +56,18 @@
             margin-left: 612px;
             font-size: 18px;
         }
+        body{
+            background-image:url("drawable/background1.jpg");
+            background-size: cover;
+        }
     </style>
 </head>
-<body bgcolor="#ffe4c4">
+<body>
 <#if message?has_content>
-    <p>${message}</p>
+    <div class="message">${message}</div>
 </#if>
 <div class="MyHistoryArticleHeader">
-    MyHistoryArticle
+    MyHistoryArticle.ru
 </div>
 <form class = "signUpForm" method="post">
     <label class="logLabel">Don't have an account? Sign up now!</label>

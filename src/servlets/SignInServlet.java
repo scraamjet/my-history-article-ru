@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
 @WebServlet("/signIn")
@@ -23,7 +24,12 @@ public class SignInServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
-        boolean result = signInService.signIn(login, password);
+        boolean result = false;
+        try {
+            result = signInService.signIn(login, password);
+        } catch (NoSuchAlgorithmException e) {
+
+        }
         Map<String, Object> root = new HashMap<>();
         if (signInService.checkLoginInput(login) && signInService.checkPasswordInput(password)) {
             if (result) {

@@ -23,4 +23,10 @@ public class UserProfileService {
     public int usersArticlesCount(Long userID){
         return articleRepository.countUsersArticles(userID);
     }
+    public void updateUser(User user){
+        userRepositoryJDBC.update(user);
+    }
+    public void updateUserProfile(UserProfile userProfile){
+        userProfileRepository.update(userProfile);
+    }
 }

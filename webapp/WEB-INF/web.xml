@@ -3,5 +3,17 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
 		 http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
-
+    <servlet>
+        <servlet-name>changeAvatarServlet</servlet-name>
+        <servlet-class>servlets.ChangeAvatarServlet</servlet-class>
+        <multipart-config>
+            <max-file-size>1000000000</max-file-size>
+            <max-request-size>100000000</max-request-size>
+        </multipart-config>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>changeAvatarServlet
+        </servlet-name>
+        <url-pattern>/changeAvatarServlet</url-pattern>
+    </servlet-mapping>
 </web-app>

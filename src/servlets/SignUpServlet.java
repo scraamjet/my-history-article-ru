@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,19 +31,17 @@ public class SignUpServlet extends HttpServlet
         String login = request.getParameter("login");
         String password = request.getParameter("password");
         Map<String,Object> root = new HashMap<>();
-        if(signUpService.checkPasswordInput(password)&&signUpService.checkLoginInput(login))
-        {   if(signUpService.checkForbiddenSeq(login)) {
+        if(signUpService.checkPasswordInput(password)&&signUpService.checkLoginInput(login)) {
             if (signUpService.isNotExist(login)) {
-                signUpService.signUp(login, password);
+                try {
+                    signUpService.signUp(login, password);
+                } catch (NoSuchAlgorithmException e) {
+                }
                 response.sendRedirect("http://localhost:8081/myArticle/signIn");
             } else {
                 root.put("message", "This login already taken!");
                 helper.render(request, response, "signUp.ftl", root);
             }
-        }
-        else{
-            root.put("message","You use forbidden characters in login: @,$,#,%,+,=,^{,},_");
-        }
         }
         else
             {

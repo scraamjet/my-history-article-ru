@@ -8,7 +8,6 @@ public class Article {
     private String title;
     private String text;
     private Long userID;
-    private double averageRate;
     private Date date;
     private String userLogin;
 
@@ -24,20 +23,26 @@ public class Article {
         this.userLogin = userLogin;
     }
 
-    public Article(Long id, String title, String text, Long userID, double averageRate, Date date) {
+    public Article(Long id, String title, String text, Long userID, Date date) {
         this.id = id;
         this.title = title;
         this.text = text;
         this.userID = userID;
-        this.averageRate = averageRate;
         this.date = date;
     }
+
 
     public Article(String title, String text, Long userID) {
         this.title = title;
         this.text = text;
         this.userID = userID;
-        this.averageRate = 0.0;
+    }
+
+    public Article(Long id,String title,String text,Long userID) {
+        this.id = id;
+        this.title = title;
+        this.text = text;
+        this.userID = userID;
     }
 
     public Long getUserID() {
@@ -46,14 +51,6 @@ public class Article {
 
     public void setUserID(Long userID) {
         this.userID = userID;
-    }
-
-    public double getAverageRate() {
-        return averageRate;
-    }
-
-    public void setAverageRate(double averageRate) {
-        this.averageRate = averageRate;
     }
 
     public Long getId() {

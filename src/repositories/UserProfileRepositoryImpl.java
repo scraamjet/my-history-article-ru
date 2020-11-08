@@ -13,9 +13,9 @@ import java.util.regex.Pattern;
 public class UserProfileRepositoryImpl implements UserProfileRepository {
     private Connection connection;
     private static final String SQL_FIND_BY_ID = "SELECT * FROM users_profiles WHERE id = ?";
-    private static final String SQL_SAVE_USER_PROFILE = "INSERT INTO users_profiles(article_average_rate,image_path)VALUES(?,?)";
+    private static final String SQL_SAVE_USER_PROFILE = "INSERT INTO users_profiles(image_path)VALUES(?)";
     private static final String SQL_PROFILE_TO_USER = "UPDATE users SET user_profile_id = ? WHERE id = ?";
-    private static final String SQL_UPDATE_USER_PROFILE = "UPDATE users_profiles SET article_average_rate,profile_image";
+    private static final String SQL_UPDATE_USER_PROFILE = "UPDATE users_profiles SET image_path=? WHERE id = ?";
     private static final String SQL_DELETE_BY_ID  = "DELETE FROM users_profiles WHERE id = ?";
 
     public UserProfileRepositoryImpl() {
@@ -65,8 +65,7 @@ public class UserProfileRepositoryImpl implements UserProfileRepository {
     public void save(UserProfile userProfile) {
 
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SAVE_USER_PROFILE, Statement.RETURN_GENERATED_KEYS)) {
-                preparedStatement.setDouble(1,userProfile.getDefaultAverageRATE());
-                preparedStatement.setString(2,userProfile.getDefaultImagePATH());
+                preparedStatement.setString(1,userProfile.getDefaultImagePATH());
                 int updRows = preparedStatement.executeUpdate();
                 if (updRows == 0) {
                     //Если ничего не было изменено, значит возникла ошибка
@@ -92,10 +91,10 @@ public class UserProfileRepositoryImpl implements UserProfileRepository {
     @Override
     public void update(UserProfile userProfile) {
         try (PreparedStatement statement = connection.prepareStatement(SQL_UPDATE_USER_PROFILE)) {
-            statement.setDouble(1,userProfile.getDefaultAverageRATE());
-            statement.setString(2,userProfile.getDefaultImagePATH());
+            statement.setString(1,userProfile.getImagePath());
+            statement.setLong(2,userProfile.getId());
             int updRows = statement.executeUpdate();
-
+            int a = 2;
             if (updRows == 0) {
                 throw new SQLException();
             }
@@ -120,8 +119,7 @@ public class UserProfileRepositoryImpl implements UserProfileRepository {
     }
     private RowMapper<UserProfile> userProfileRowMapper = row -> {
         Long id = row.getLong("id");
-        Double articleAverageArticle = row.getDouble("article_average_rate");
         String imagePath = row.getString("image_path");
-        return new UserProfile(id,articleAverageArticle,imagePath);
+        return new UserProfile(id,imagePath);
     };
 }

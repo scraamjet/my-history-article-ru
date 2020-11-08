@@ -24,7 +24,7 @@ public class FileSaver {
             } catch (IOException e) {
                 throw new IllegalStateException(e);
             }
-            return Optional.of(File.separator + directoryName + File.separator + fileName);
+            return Optional.of(directoryName + "/" + fileName);
         }
         return Optional.empty();
     }

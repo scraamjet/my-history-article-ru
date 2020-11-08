@@ -9,14 +9,12 @@ import java.util.Objects;
 public class UserProfile {
     private long id;
     private String imagePath;
-    private double articleAverageRATE;
     private List<Article> articleList;
 
     public UserProfile() {
     }
 
-    public UserProfile(long id, double articleAverageRATE, String imagePath) {
-        this.articleAverageRATE = articleAverageRATE;
+    public UserProfile(long id, String imagePath) {
         this.id = id;
         this.imagePath = imagePath;
     }
@@ -52,18 +50,9 @@ public class UserProfile {
         this.articleList = articleList;
     }
 
-    public double getArticleAverageRATE() {
-        return articleAverageRATE;
-    }
 
-    public void setArticleAverageRATE(double articleAverageRATE) {
-        this.articleAverageRATE = articleAverageRATE;
-    }
-    public double getDefaultAverageRATE(){
-        return 0.0;
-    }
     public String getDefaultImagePATH(){
-        return "WEB-INF/drawable/default_user_icon.jpg";
+        return "drawable/default_user_icon.jpg";
     }
 
     @Override
@@ -72,13 +61,12 @@ public class UserProfile {
         if (object == null || getClass() != object.getClass()) return false;
         UserProfile that = (UserProfile) object;
         return id == that.id &&
-                Double.compare(that.articleAverageRATE, articleAverageRATE) == 0 &&
                 Objects.equals(imagePath, that.imagePath) &&
                 Objects.equals(articleList, that.articleList);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, imagePath, articleAverageRATE, articleList);
+        return Objects.hash(id, imagePath, articleList);
     }
 }

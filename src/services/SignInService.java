@@ -3,6 +3,8 @@ package services;
 import models.User;
 import repositories.UserRepositoryJDBCImpl;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,12 +18,13 @@ public class SignInService  {
     }
 
      */
+    private PasswordHashCodeService passwordHashCodeService = new PasswordHashCodeService();
     private UserRepositoryJDBCImpl userRepositoryJDBC = new UserRepositoryJDBCImpl();
-    public boolean signIn(String login,String password) {
+    public boolean signIn(String login,String password) throws NoSuchAlgorithmException {
         List<User> users = userRepositoryJDBC.findByLogin(login);
         if(users.size()==0) return false;
             else{
-                if(users.get(0).getPassword().equals(password)){
+                if(users.get(0).getPassword().equals(passwordHashCodeService.passwordHashCode(password))){
                     return true;
                 }
                 else return false;
@@ -36,4 +39,6 @@ public class SignInService  {
     public boolean checkPasswordInput(String password){
         return password.length()>=7;
     }
-    }
+
+
+}

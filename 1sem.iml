@@ -21,7 +21,8 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="Tomcat 8.5.58" level="application_server_libraries" />
     <orderEntry type="library" name="javax.servlet-api-3.1.0" level="project" />
-    <orderEntry type="library" name="freemarker-2.3.30" level="project" />
     <orderEntry type="library" name="postgresql-42.2.18" level="project" />
+    <orderEntry type="library" name="commons-fileupload-1.4" level="project" />
+    <orderEntry type="library" name="freemarker-2.3.30" level="project" />
   </component>
 </module>

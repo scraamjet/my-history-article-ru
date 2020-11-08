@@ -4,9 +4,10 @@
     <root id="archive" name="unnamed.war">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="lib">
-          <element id="library" level="project" name="freemarker-2.3.30" />
           <element id="library" level="project" name="javax.servlet-api-3.1.0" />
           <element id="library" level="project" name="postgresql-42.2.18" />
+          <element id="library" level="project" name="commons-fileupload-1.4" />
+          <element id="library" level="project" name="freemarker-2.3.30" />
         </element>
         <element id="directory" name="classes">
           <element id="module-output" name="1sem" />

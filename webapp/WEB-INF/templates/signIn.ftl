@@ -42,19 +42,33 @@
             font-size: 22px;
             border-radius: 20px;
         }
+        .message{
+            background-color: wheat;
+            color:indianred;
+            font-size: 18px;
+            height: 35px;
+            width: 1533px;
+            margin-top: -10px;
+            margin-left: -15px;
+            padding-left: 10px;
+        }
         .signUpLink{
             margin-top: 10px;
             margin-left: 620px;
             font-size: 18px;
         }
+        body{
+            background-image:url("drawable/background1.jpg");
+            background-size: cover;
+        }
     </style>
 </head>
-<body bgcolor="#ffe4c4">
+<body>
 <#if message?has_content>
-    <p>${message}</p>
+    <p class="message">${message}</p>
 </#if>
 <div class="MyHistoryArticleHeader">
-    MyHistoryArticle
+    MyHistoryArticle.ru
 </div>
 <form method="post" class = signInForm>
     <label class="logLabel">Have an account? Sign in!</label>

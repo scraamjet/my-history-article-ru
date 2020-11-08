@@ -14,25 +14,23 @@ import java.util.HashMap;
 
 @WebServlet("/addArticle")
 public class AddArticleServlet extends HttpServlet {
-    Helper helper;
-    UserProfileService userProfileService;
-    AddArticleService addArticleService;
-
+    private Helper helper;
+    private UserProfileService userProfileService;
+    private AddArticleService addArticleService;
     @Override
     public void init() throws ServletException {
         helper = new Helper();
         userProfileService = new UserProfileService();
         addArticleService = new AddArticleService();
-
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = userProfileService.findUser((String) request.getSession(false).getAttribute("login"));
         String title = request.getParameter("title");
         String text = request.getParameter("text");
-        String exit = request.getParameter("exit");
         HashMap<String,Object> root = new HashMap<>();
         Article article = new Article(title, text, user.getId());
+
 
                 if(addArticleService.checkTitleSeqLength(article)) {
                     if (addArticleService.checkTextSeqLength(article)) {
@@ -49,18 +47,7 @@ public class AddArticleServlet extends HttpServlet {
                     root.put("message","The title cannot be so short. Minimal length: 4 characters!");
                     helper.render(request,response,"addArticle.ftl",root);
                 }
-        if(exit.equals("Exit")){
-            if(request.getSession(false)!=null){
-                if(request.getSession(false).getAttribute("login") !=null){
-                    HttpSession httpSession = request.getSession();
-                    httpSession.removeAttribute("login");
-                }
-            }
-            Cookie cookie = new Cookie("login","null");
-            cookie.setMaxAge(0);
-            response.addCookie(cookie);
-            response.sendRedirect("/signIn");
-        }
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

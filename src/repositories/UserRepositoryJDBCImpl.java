@@ -17,11 +17,10 @@ public class UserRepositoryJDBCImpl implements UserRepository {
 
     private static final String SQL_FIND_BY_ID = "SELECT * FROM users WHERE id = ?";
     private static final String SQL_FIND_BY_LOGIN = "SELECT * FROM users WHERE login = ?";
-    private static final String SQL_SAVE_USER = "INSERT INTO users(login,spw12)VALUES(?,?)";
+    private static final String SQL_SAVE_USER = "INSERT INTO users(login,password)VALUES(?,?)";
     private static final String SQL_UPDATE_USER = "UPDATE user SET login WHERE id =? ";
     private static final String SQL_FIND_ALL_USERS = "SELECT * FROM users";
     private static final String SQL_DELETE_BY_ID = "DELETE FROM user WHERE id = ?";
-    private static final String SQL_FIND_PROFILE = "SELECT * FROM users WHERE ";
 
     @Override
     public List<User> findByLogin(String pattern) {
@@ -121,8 +120,8 @@ public class UserRepositoryJDBCImpl implements UserRepository {
     private RowMapper<User> userRowMapper = row -> {
         Long id = row.getLong("id");
         String login = row.getString("login");
-        String spw12 = row.getString("spw12");
+        String password = row.getString("password");
         Long profile_id = row.getLong("user_profile_id");
-        return new User(id, login,spw12,profile_id);
+        return new User(id, login,password,profile_id);
     };
 }

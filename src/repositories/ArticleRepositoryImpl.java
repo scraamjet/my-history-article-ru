@@ -13,8 +13,8 @@ public class ArticleRepositoryImpl implements ArticleRepository{
     private Connection connection;
     private static final String SQL_FIND_ALL_BY_TITLE = "SELECT * FROM articles WHERE title = ?";
     private static final String SQL_FIND_BY_ID = "SELECT * FROM articles WHERE id = ?";
-    private static final String SQL_SAVE_ARTICLE = "INSERT INTO articles (title,text,owner_id,article_average_rate)VALUES(?,?,?,?)";
-    private static final String SQL_UPDATE_ARTICLE = "UPDATE articles SET title = ?,text = ?,article_average_rate = ?";
+    private static final String SQL_SAVE_ARTICLE = "INSERT INTO articles (title,text,owner_id)VALUES(?,?,?)";
+    private static final String SQL_UPDATE_ARTICLE = "UPDATE articles SET title = ?,text = ?WHERE id = ? ";
     private static final String SQL_FIND_ALL_BY_USER_ID = "SELECT * FROM articles WHERE owner_id = ?";
     private static final String SQL_DELETE_BY_ID = "DELETE FROM articles WHERE id = ?";
     private static final String SQL_NEWS = "SELECT * FROM articles WHERE date = CURRENT_DATE;";
@@ -107,7 +107,6 @@ public class ArticleRepositoryImpl implements ArticleRepository{
             preparedStatement.setString(1,article.getTitle());
             preparedStatement.setString(2,article.getText());
             preparedStatement.setLong(3,article.getUserID());
-            preparedStatement.setDouble(4,article.getAverageRate());
             int updRows = preparedStatement.executeUpdate();
             if (updRows == 0) {
                 throw new SQLException();
@@ -129,7 +128,7 @@ public class ArticleRepositoryImpl implements ArticleRepository{
         try (PreparedStatement statement = connection.prepareStatement(SQL_UPDATE_ARTICLE)) {
             statement.setString(1,article.getTitle());
             statement.setString(2,article.getText());
-            statement.setDouble(3,article.getAverageRate());
+            statement.setLong(3,article.getId());
             int updRows = statement.executeUpdate();
             if (updRows == 0) {
                 throw new SQLException();
@@ -157,8 +156,7 @@ public class ArticleRepositoryImpl implements ArticleRepository{
         String title = row.getString("title");
         String text = row.getString("text");
         Long userID = row.getLong("owner_id");
-        Double averageRATE = row.getDouble("article_average_rate");
         Date date = row.getDate("date");
-        return new Article(id,title,text,userID,averageRATE,date);
+        return new Article(id,title,text,userID,date);
     };
 }
